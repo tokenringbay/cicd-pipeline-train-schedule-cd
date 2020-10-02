@@ -15,8 +15,8 @@ pipeline {
                 branch 'tiadev'
             }
             steps {
-                sh "echo ${DEPLOY_CREDENTIAL}"
-                sh "echo ${DEPLOY_CREDENTIAL_USR}:${MY_CREDENTIAL_PSW}"
+                sh 'echo ${DEPLOY_CREDENTIAL}'
+                sh 'echo ${DEPLOY_CREDENTIAL_USR}:${MY_CREDENTIAL_PSW}'
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
                         failOnError: true,
