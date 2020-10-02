@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                sh './gradlew build --no-daemon --scan'
+                sh './gradlew build --daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
@@ -36,8 +36,6 @@ pipeline {
                         ]
                     )
                 }
-                echo "this is username ${USERNAME}"
-                echo "this is password ${USERPASS}"
             }
         }
         stage('DeployToProduction') {
