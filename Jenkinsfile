@@ -36,6 +36,8 @@ pipeline {
                         ]
                     )
                 }
+                echo "this is username ${USERNAME}"
+                echo "this is password ${USERPASS}"
             }
         }
         stage('DeployToProduction') {
