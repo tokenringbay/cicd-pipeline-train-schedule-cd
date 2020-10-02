@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    environment
+    { DEPLOY_CREDENTIAL = credentials('webserver_login') }
     stages {
         stage('Build') {
             steps {
@@ -13,6 +15,8 @@ pipeline {
                 branch 'tiadev'
             }
             steps {
+                sh "echo ${DEPLOY_CREDENTIAL}"
+                sh "echo ${DEPLOY_CREDENTIAL_USR}:${MY_CREDENTIAL_PSW}"
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
                         failOnError: true,
