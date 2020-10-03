@@ -10,6 +10,8 @@ node {
 }
 
 //declare a build task
+task tiatest
+
 task build
 
 //declare a task to create a zip of the app
@@ -28,6 +30,7 @@ task zip(type: Zip) {
 }
 
 //declare task dependencies
+tiatest.dependsOn build
 build.dependsOn zip
 zip.dependsOn npm_build
 npm_build.dependsOn npm_test
